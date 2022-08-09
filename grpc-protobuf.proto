@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServices";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto"
+
+package greet;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc SayHelloStream (HelloRequest) returns (stream HelloReply);
+  rpc SayHellosClientStream (stream HelloRequest) returns(HelloReply);
+  rpc SayBiDirectionalHello(stream HelloRequest) returns (stream HelloReply);
+  rpc SayUserHello(HelloRequest) returns(HelloReply);
+}
+
+message Address {
+  string Street = 1;
+  string City = 2;
+  string PostalCode = 3;
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1; // komentar - zalezi na poradi
+  int32 ident = 2;
+  double dbl = 3;
+  float flt = 4;
+  bool isItTrue = 5;
+  string extra2 = 6;
+  Address address = 7;
+  int32 progress = 8;
+  google.protobuf.Timestamp start = 9;    // datetime
+  google.protobuf.Int32Value age = 10;    // nullable typ, převádí na int?
+  repeated string roles = 11;             // List<string>
+  map<string, string> attributes = 12;    // Dictionary<string, string>
+  
+  enum State {
+    PRVNI = 0;
+    DRUHY = 1;
+    TRETI = 2;
+  }
+
+}
+
+
+// oneof
+
+message Person {
+}
+
+message Error {
+}
+
+message ResponseMessage {
+  oneof result {
+    Error error = 1;
+    Person person = 2;
+  }
+}

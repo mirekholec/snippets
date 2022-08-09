@@ -1,0 +1,6 @@
+{
+    "ConnectionStrings" : {
+        "SqlServer" : "Server=localhost;Database=efcore;User Id=sa;Password=pass;Integrated Security=false;",
+        "Sqlite" : "Data Source=database.db"
+    }
+}
