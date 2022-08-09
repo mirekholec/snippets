@@ -4,7 +4,7 @@
 <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.0" />
 <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="5.0.0" />
 
-// WebApplicationBuilder (builder.Services)
+// WebApplicationBuilder builder.Services
 Services
     .AddHealthChecks()
     .AddUrlGroup(new Uri("https://www.miroslavholec.cz"))
