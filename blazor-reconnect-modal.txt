@@ -1,0 +1,11 @@
+<span id="components-reconnect-modal" class="my-reconnect-modal components-reconnect-hide">
+    <span class="show badge badge-warning">
+        reconnecting
+    </span>
+    <span class="failed badge badge-danger">
+        failed
+    </span>
+    <span class="rejected badge badge-danger">
+        rejected
+    </span>
+</span>

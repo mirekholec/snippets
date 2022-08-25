@@ -1,0 +1,42 @@
+<div class="modal" tabindex="-1" style="display:block;background-color:gainsboro" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">@Text</h3>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-danger"@onclick="DoYes">
+                    @Choice1
+                </button>
+                <button class="btn btn-primary" @onclick="DoNothing">
+                    @Choice2
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Choice1 { get; set; }
+
+    [Parameter]
+    public string Choice2 { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ConfirmResult { get; set; }
+
+    private async Task DoYes(MouseEventArgs obj)
+    {
+        await ConfirmResult.InvokeAsync(1);
+    }
+
+    private async Task DoNothing(MouseEventArgs obj)
+    {
+        await ConfirmResult.InvokeAsync(2);
+    }
+}
