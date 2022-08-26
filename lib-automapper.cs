@@ -5,6 +5,13 @@
 // WebApplicationBuilder (builder.Services)
 Services.AddAutoMapper(typeof(IApplicationAssembly));
 
+// - nebo když je potřeba inject více services z DI
+ builder.Services.AddSingleton(sp => new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<RegistrationProfile>();
+    cfg.AddProfile(new WebinarProfile(sp.CreateScope().ServiceProvider.GetRequiredService<FilePaths>()));
+}).CreateMapper());
+
 // MappingProfile.cs
 public class MappingProfile : Profile
 {

@@ -1,1 +1,1 @@
-dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook" Microsoft.EntityFrameworkCore.SqlServer
+dotnet ef dbcontext scaffold "connectionString" Microsoft.EntityFrameworkCore.SqlServer
