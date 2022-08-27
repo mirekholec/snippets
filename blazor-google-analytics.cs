@@ -1,4 +1,4 @@
-// Layout.cshtml
+// Index.cshtml / _Host.cshtml
 
 <script>
 (function (i, s, o, g, r, a, m) {
@@ -17,7 +17,24 @@ window.googleAnalytics = {
 }
 
 window.showAlert = (text) => {
-    return "TEXT: " + text;
+    return "Text: " + text;
 }
 
 </script>
+
+
+
+// App.razor
+protected override void OnAfterRender(bool firstRender)
+{
+    if (firstRender)
+    {
+        NavigationManager.LocationChanged += async (sender, args) =>
+        {
+            await JsRuntime.InvokeVoidAsync("googleAnalytics.trackPageView");
+            string result = await JsRuntime.InvokeAsync<string>("showAlert", "ahoj");
+        };
+    }
+
+    base.OnAfterRender(firstRender);
+}

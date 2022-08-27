@@ -6,12 +6,7 @@ public class TitleValidationAttribute : ValidationAttribute
 {
     public override bool IsValid(object value)
     {
-        if (value == null)
-        {
-            return true;
-        }
-
-        if (value.ToString()!.Contains("Kč"))
+        if (value != null && value.ToString().Contains("Kč"))
         {
             return false;
         }
