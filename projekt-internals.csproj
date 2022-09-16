@@ -1,0 +1,8 @@
+enable trimming
+<PublishTrimmed>true</PublishTrimmed>
+
+member-level trimming
+<TrimMode>link</TrimMode>
+
+assembly-level trimming
+<TrimMode>copyused</TrimMode>
