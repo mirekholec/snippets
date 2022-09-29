@@ -1,0 +1,16 @@
+@* index.html nebo _Host.cshtml *@
+<script>
+    window.showAlert = (name) => {
+        alert("Ahoj " + name);
+        return "Ahoj " + name;
+    }
+<script>
+
+@* razor komponenta *@
+
+[Inject]
+protected IJSRuntime JsRuntime { get; set; }
+protected override void OnAfterRender(bool firstRender)
+{
+    string result = await JsRuntime.InvokeAsync<string>("showAlert", "Mirek");
+}
