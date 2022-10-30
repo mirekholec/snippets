@@ -1,13 +1,15 @@
 // doc: https://docs.fluentvalidation.net/en/latest/aspnet.html
 
-// dotnet add package FluentValidation.AspNetCore
+// Project.csproj
+<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
 
 // WebApplicationBuilder (builder.Services)
-Services.AddMvc().AddFluentValidation(fv => {
-    fv.DisableDataAnnotationsValidation = true;     // vypne ostatní validace po Fluent Val.
-    fv.RegisterValidatorsFromAssemblyContaining...  // auto registrace
+Services.AddFluentValidationAutoValidation(x =>
+{
+    x.DisableDataAnnotationsValidation = true;
 });
-
+Services.AddValidatorsFromAssemblyContaining(typeof(IWorkshopperApi));
 Services.AddTransient<IValidator<Person>, PersonValidator>();
 
 

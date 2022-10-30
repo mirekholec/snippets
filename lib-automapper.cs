@@ -1,12 +1,11 @@
 // Projekt.csproj
-<PackageReference Include="Automapper" Version="10.1.1" />
-<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
 
 // WebApplicationBuilder (builder.Services)
-Services.AddAutoMapper(typeof(IApplicationAssembly));
+Services.AddAutoMapper(x => x.AddMaps(typeof(IWorkshopperApi)));
 
 // - nebo když je potřeba inject více services z DI
- builder.Services.AddSingleton(sp => new MapperConfiguration(cfg =>
+ Services.AddSingleton(sp => new MapperConfiguration(cfg =>
 {
     cfg.AddProfile<RegistrationProfile>();
     cfg.AddProfile(new WebinarProfile(sp.CreateScope().ServiceProvider.GetRequiredService<FilePaths>()));
