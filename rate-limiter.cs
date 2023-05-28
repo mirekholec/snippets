@@ -2,7 +2,7 @@ services.AddRateLimiter(x =>
 {
     x.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
     x.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(ct =>
-        RateLimitPartition.GetFixedWindowLimiter(ct.Request.Host.Value,
+        RateLimitPartition.GetFixedWindowLimiter(ct.Connection.RemoteIpAddress.ToString(),
             p => new FixedWindowRateLimiterOptions()
             {
                 AutoReplenishment = true,
