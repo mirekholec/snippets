@@ -1,12 +1,10 @@
 // Projekt.csproj - pro web i konzolovku se přidává AspNetCore
-<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
-<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-<PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
 
 // WebApplicationBuilder (builder)
-builder.Host.UseSerilog((h, l) =>
+builder.Services.AddSerilog((provider, configuration) =>
 {
-    l.ReadFrom.Configuration(h.Configuration);
-    l.WriteTo.Console();
-    l.WriteTo.Debug();
-})
+    configuration.MinimumLevel.Information();
+    configuration.WriteTo.Console();
+    configuration.WriteTo.File("./log.txt");
+});
