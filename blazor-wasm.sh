@@ -1,0 +1,1 @@
+open -n /Applications/Google\ Chrome.app --args --remote-debugging-port=9222 --user-data-dir=/var/folders/vp/lsq895fn2gd131n4dnsf_bc00000gn/T/blazor-chrome-debug http://localhost:5257/

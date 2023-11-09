@@ -2,8 +2,16 @@
 <script>
     Blazor.start({
         reconnectionOptions: {
-        maxRetries: 3,
-        retryIntervalMilliseconds: 2000
+            maxRetries: 3,
+            retryIntervalMilliseconds: 2000
+        },
+        reconnectionHandler: {
+            onConnectionDown: (options, error) => {
+                Blazor.defaultReconnectionHandler.onConnectionDown(options, error);
+                Blazor.defaultReconnectionHandler._reconnectionDisplay.rejected = function () {
+                    window.location.reload();
+                }
+            }
         }
     });
 
