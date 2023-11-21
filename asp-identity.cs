@@ -27,7 +27,7 @@ builder.Services.Configure<IdentityOptions>(o =>
 {
     o.Lockout.MaxFailedAccessAttempts = 5;
     o.Password.RequireDigit = false;
-    o.Password.RequiredLength = 5;
+    o.Password.RequiredLength = 8;
     o.Password.RequireLowercase = false;
     o.Password.RequireUppercase = false;
     o.Password.RequiredUniqueChars = 0;
