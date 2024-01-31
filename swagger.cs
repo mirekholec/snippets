@@ -16,3 +16,7 @@ app.UseSwaggerUI(x =>
     x.SwaggerEndpoint("/swagger/v1/swagger.json", "API Documentation");
     // x.RoutePrefix = string.Empty;
 });
+
+
+// Volitelné rozšíření pro .WithOpenApi()
+<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />

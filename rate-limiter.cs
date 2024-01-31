@@ -20,7 +20,7 @@ services.AddRateLimiter(x =>
             {
                 Title = "Too many requests",
                 Status = 429,
-                Detail = $"Retry after {after} seconds"
+                Detail = $"Rate limit is {after} seconds"
             }, token);
         }
     };
