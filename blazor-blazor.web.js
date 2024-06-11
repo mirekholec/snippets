@@ -19,6 +19,7 @@
             }
         },
         webAssembly: {
+            applicationCulture: 'cs-CZ'
         }
 
     });
