@@ -10,17 +10,25 @@ public class NotifierService
     }
 }
 
-// Caller.razor
+// Invoker.razor
 private async Task Notify()
 {
     await Notifier.Update("Hello World!");
 }
 
-// Target.razor
+// Notificator.razor
 Notifier.Notify += OnNotify;
 
-private async Task OnNotify(string message)
-{
-    NotificationMessage = message;
-    StateHasChanged();
-}
+    private Task OnNotify(string message)
+    {
+        Message = message;
+        StateHasChanged();
+
+        // po pěti sekundách vymazat message
+        Task.Delay(5000).ContinueWith(_ => {
+            Message = string.Empty;
+            StateHasChanged();
+        });
+
+        return Task.CompletedTask;
+    }
