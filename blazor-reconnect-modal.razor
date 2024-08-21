@@ -1,0 +1,116 @@
+<div id="components-reconnect-modal">
+
+    <div class="loader-container">
+
+        <div>
+            Připojení ztraceno <br/>
+            <span id="components-reconnect-current-attempt"></span> /
+            <span id="components-reconnect-max-retries"></span>
+        </div>
+
+        <div class="fading-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div>
+            <a href="@ReloadPage">Obnovit stránku</a><br/>
+            <span><a href="#" id="close-reconnect-dialog">Skrýt toto okno</a></span>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    document
+    .getElementById('close-reconnect-dialog')
+    .addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('components-reconnect-modal').style.display = 'none';
+    });
+</script>
+
+@code
+{
+    [Parameter] public string ReloadPage { get; set; }
+}
+
+<style>
+   #components-reconnect-modal {
+    position: fixed;
+    inset: 0px;
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+    background-color: #000;
+    opacity: 0.85;
+    text-align: center;
+    transition: visibility 0s linear 1000ms;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Open Sans", sans-serif;
+}
+
+.loader-container > div {
+    margin: 0 20px;
+    color: #fff;
+}
+
+span {
+    font-size: 13px;
+}
+
+.fading-bars {
+    justify-content: space-between;
+}
+
+.bar {
+    width: 10px;
+    height: 40px;
+    background-color: #cc0000;
+    animation: fade 1s infinite;
+}
+
+.bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.bar:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+#components-reconnect-modal.components-reconnect-show,
+#components-reconnect-modal.components-reconnect-failed,
+#components-reconnect-modal.components-reconnect-rejected {
+    display: block;
+}
+</style>
