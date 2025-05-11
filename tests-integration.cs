@@ -16,6 +16,7 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
     public BasicTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
+        // zde se provede příprava databáze (ens dele, ens crea, add seed)
     }
 }
 

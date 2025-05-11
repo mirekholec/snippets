@@ -6,26 +6,25 @@
         },
         circuit: {
             reconnectionOptions: {
-                maxRetries: 3,
-                retryIntervalMilliseconds: 2000
+                maxRetries: 6,
+                retryIntervalMilliseconds: (previousAttempts, maxRetries) =>
+                        previousAttempts >= maxRetries
+                            ? null
+                            : previousAttempts * 1000
+                },
             },
-            reconnectionHandler: {
-                onConnectionDown: (options, error) => {
-                    Blazor.defaultReconnectionHandler.onConnectionDown(options, error);
-                    Blazor.defaultReconnectionHandler._reconnectionDisplay.rejected = function () {
-                        window.location.reload();
-                    }
-                }
-            }
-        },
         webAssembly: {
             applicationCulture: 'cs-CZ'
         }
 
     });
 
-    window.addEventListener('pagehide', () => {
-        Blazor.disconnect();
+    // events: enhancedload, enhancednavigationstart, enhancednavigationend
+    Blazor.addEventListener('enhancedload', () => {
     });
+
+    // blazor.addEventListener("enhancednavigationstart", {CALLBACK});
+    // blazor.addEventListener("enhancednavigationend", {CALLBACK});
+    // blazor.addEventListener("enhancedload", {CALLBACK});
     
 </script>
