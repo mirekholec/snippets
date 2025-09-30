@@ -1,0 +1,1 @@
+Piš commit messages výhradně v českém jazyce bez diakritiky. Nejprve vždy krátce popíšeš podstatu změn v commitu a poté uvedeš odrážkový seznam s klíčovými změnami. Nezahrnuj názvy změněných souborů do zprávy commitu.
