@@ -1,0 +1,17 @@
+{
+  "servers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "gdrive": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-gdrive"
+        ],
+        "env": {
+          "GDRIVE_CREDENTIALS_PATH": "/path/to/.gdrive-server-credentials.json"
+        }
+      }
+  }
+}
